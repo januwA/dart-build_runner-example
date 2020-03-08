@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      demo_generator|demo:
+        enabled: true
+
+builders:
+  test:
+    target: ":demo_generator"
+    import: "package:demo_generator/builder.dart"
+    builder_factories: ["demo"]
+    build_extensions: { ".dart": [".demo.g.part"] }
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
